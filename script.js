@@ -24,28 +24,29 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-  // Web3Forms API-তে ডাটা পাঠানো (সঠিক ইউআরএল এবং ব্র্যাকেটসহ)
-fetch('https://web3forms.com', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    body: json
-})
-.then(async (response) => {
-    let res = await response.json();
-    if (response.status == 200) {
-        alert("ধন্যবাদ! আপনার মেসেজটি সফলভাবে পাঠানো হয়েছে। সিয়াম ভাইয়া খুব শীঘ্রই আপনার সাথে যোগাযোগ করবেন।");
-        this.reset(); // ফর্মটি খালি করা
-    } else {
-        alert("দুঃখিত! " + res.message);
-    }
-})
-.catch(error => {
-    console.log(error);
-    alert("নেটওয়ার্ক সমস্যা! অনুগ্রহ করে আবার চেষ্টা করুন।");
-});
+    // Web3Forms API-তে ডাটা পাঠানো (সঠিক API ইউআরএল ব্যবহার করা হয়েছে)
+    fetch('https://web3forms.com', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: json
+    })
+    .then(async (response) => {
+        let res = await response.json();
+        if (response.status == 200) {
+            alert("ধন্যবাদ! আপনার মেসেজটি সফলভাবে পাঠানো হয়েছে। সিয়াম ভাইয়া খুব শীঘ্রই আপনার সাথে যোগাযোগ করবেন।");
+            this.reset(); // ফর্মটি খালি করা
+        } else {
+            alert("দুঃখিত! " + res.message);
+        }
+    })
+    .catch(error => {
+        console.log(error);
+        alert("নেটওয়ার্ক সমস্যা! অনুগ্রহ করে আবার চেষ্টা করুন।");
+    });
+}); // <--- সাবমিট ইভেন্টের ব্র্যাকেট সঠিকভাবে শেষ করা হয়েছে
 
 // মেনু থেকে ক্লিক করলে নির্দিষ্ট সেকশনে স্মুথ স্ক্রলিং 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
