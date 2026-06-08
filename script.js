@@ -25,14 +25,14 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     const json = JSON.stringify(object);
 
     // Web3Forms API-তে ডাটা পাঠানো
-    fetch('https://web3forms.com', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: json
-    })
+  fetch('https://web3forms.com', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: json
+})
     .then(async (response) => {
         let res = await response.json();
         if (response.status == 200) {
