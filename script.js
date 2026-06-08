@@ -15,12 +15,42 @@ navLinks.forEach(link => {
     });
 });
 
-// কন্টাক্ট ফর্ম সাবমিশনের জন্য অ্যালার্ট মেসেজ
+// কন্টাক্ট ফর্ম সাবমিশনের জন্য জাভাস্ক্রিপ্ট কোড
 document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    alert("ধন্যবাদ! আপনার মেসেজটি সফলভাবে পাঠানো হয়েছে। সিয়াম ভাইয়া খুব শীঘ্রই আপনার সাথে যোগাযোগ করবেন।");
-    this.reset();
+    event.preventDefault(); // ফর্মের ডিফল্ট সাবমিট বন্ধ করা
+
+    // ফর্মের ডাটা সংগ্রহ করা
+    const formData = new FormData(this);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    // Web3Forms API-তে ডাটা পাঠানো
+    fetch('https://web3forms.com', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: json
+    })
+    .then(async (response) => {
+        let res = await response.json();
+        if (response.status == 200) {
+            // ইমেইল সফলভাবে চলে গেলে এই অ্যালার্ট দেখাবে
+            alert("ধন্যবাদ! আপনার মেসেজটি সফলভাবে পাঠানো হয়েছে। সিয়াম ভাইয়া খুব শীঘ্রই আপনার সাথে যোগাযোগ করবেন।");
+            this.reset(); // ফর্মটি খালি করা
+        } else {
+            // API থেকে কোনো এরর আসলে
+            alert("দুঃখিত! " + res.message);
+        }
+    })
+    .catch(error => {
+        // নেটওয়ার্ক বা অন্য কোনো সমস্যা হলে
+        console.log(error);
+        alert("নেটওয়ার্ক সমস্যা! অনুগ্রহ করে আবার চেষ্টা করুন।");
+    });
 });
+
 
 // মেনু থেকে ক্লিক করলে নির্দিষ্ট সেকশনে স্মুথ স্ক্রলিং 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
