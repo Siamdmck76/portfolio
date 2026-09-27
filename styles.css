@@ -180,3 +180,134 @@ footer { background-color: var(--dark-blue); color: var(--white); text-align: ce
     .timeline-item::before { left: -28px; width: 12px; height: 12px; }
     .floating-whatsapp { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 30px; }
 }
+/* Telegram Section Base Styling */
+.telegram-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+    font-family: 'Hind Siliguri', sans-serif;
+    overflow: hidden;
+}
+
+.tg-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* PC View Settings */
+.tg-image-block {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.tg-banner {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.tg-banner:hover {
+    transform: scale(1.02); /* হালকা জুম ইফেক্ট */
+}
+
+.tg-content-block {
+    flex: 1;
+    text-align: left;
+}
+
+.tg-content-block .badge {
+    background-color: #10b981;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.tg-content-block h2 {
+    font-size: 2.2rem;
+    color: #0f172a;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.tg-content-block p {
+    font-size: 1.1rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.telegram-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #0088cc;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 14px rgba(0, 136, 204, 0.3);
+    transition: all 0.3s ease;
+}
+
+.telegram-action-btn:hover {
+    background-color: #0077b3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+}
+
+.tg-icon {
+    flex-shrink: 0;
+}
+
+/* 📱 Mobile & Tablet View Styling (Responsive) */
+@media (max-width: 991px) {
+    .telegram-section {
+        padding: 40px 15px;
+    }
+
+    .tg-container {
+        flex-direction: column; /* এলিমেন্টগুলো উপর-নিচ হয়ে যাবে */
+        gap: 30px;
+    }
+    
+    .tg-image-block {
+        width: 100%;
+    }
+    
+    .tg-banner {
+        max-width: 100%; /* মোবাইলের স্ক্রিন অনুযায়ী ইমেজ সেট হবে */
+        border-radius: 12px;
+    }
+    
+    .tg-content-block {
+        text-align: center; /* মোবাইলে লেখাগুলো সেন্টারে থাকবে */
+        width: 100%;
+    }
+    
+    .tg-content-block h2 {
+        font-size: 1.7rem;
+    }
+    
+    .tg-content-block p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .telegram-action-btn {
+        width: 100%; /* মোবাইল স্ক্রিনে বাটনটি পুরো চওড়া হবে ক্লিক করার সুবিধার্থে */
+        justify-content: center;
+        box-sizing: border-box;
+    }
+}
